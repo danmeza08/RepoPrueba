@@ -1,0 +1,7 @@
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^www.servicios.com$ [NC]
+#RewriteCond %{HTTP_HOST} ^www.servicios.com/~mariamartinez  [NC]
+#RewriteCond %{HTTP_HOST} ^www.servicios.com/~pedroperez  [NC]
+#RewriteCond %{HTTP_HOST} ^www.servicios.com/~juangonzales  [NC]
+RewriteRule ^(.*)$ http://www.nuevoservicios.com/$1 [L,R=301,NC]
+~                                                                  
