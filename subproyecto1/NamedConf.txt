@@ -1,0 +1,36 @@
+/*zona hacia adelante*/
+zone "nuevoservicios.com" IN {
+        type master;
+        file "nuevoservicios.com.fwd";
+};
+
+/*zona hacia ayala*/
+zone "ayala.com" IN {
+        type master;
+        file "ayala.com.fwd";
+};
+
+
+/*zona hacia ayala*/
+zone "miotrositio.com" IN {
+        type master;
+        file "miotrositio.com.fwd";
+};
+
+
+/*zona reversa*/
+zone "50.168.192.in-addr.arpa" IN {
+        type master;
+        file "servicios.com.rev";
+};
+
+
+zone "1.50.168.192.in-addr.arpa" IN {
+        type master;
+        file "nuevoservicios.com.rev";
+};
+
+
+
+include "/etc/named.rfc1912.zones";
+include "/etc/named.root.key";
