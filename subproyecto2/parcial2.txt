@@ -1,0 +1,31 @@
+
+openssl req -x509 -nodes -newkey rsa:2048 -keyout vsftpd.pem -out vsftpd.pem -days 365
+cd /etc/vsftpd
+vim vsftpd.conf
+
+
+ssl_enable=YES
+ssl_ciphers=HIGH
+ssl_tlsv1=YES
+ssl_sslv2=YES
+ssl_sslv3=YES
+force_local_data_ssl=YES
+force_local_logins_ssl=YES
+rsa_cert_file=/etc/vsftpd/vsftpd.pem
+
+
+
+
+firewall-cmd --zone="dmz" --add-forward-port=port=443:proto=tcp:toport=443:toaddr=192.168.100.4
+
+
+DNS-TLS:
+ config.vm.provision :shell, path: "provisionamiento.sh", run: "always"
+
+
+
+
+Rich Rules:
+firewall-cmd --zone=dmz --add-service=http --permanent
+firewall-cmd --permanent --zone=dmz --add-rich-rule='rule family="ipv4" port port="80" protocol="tcp" drop'
+sudo firewall-cmd --reload
